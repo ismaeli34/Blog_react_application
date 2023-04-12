@@ -3,8 +3,9 @@ import {Button, Card, CardBody, Container, Form, Input, Label } from "reactstrap
 import { loadAllCategories } from "../services/category-service";
 import JoditEditor from "jodit-react";
 import { useRef } from "react";
-import { createPost as doCreatePost } from "../services/post-service";
+import { createPost as doCreatePost, uploadPostImage } from "../services/post-service";
 import {getCurrentUserDetail}from "../auth/index" 
+import { toast } from "react-toastify";
 
 
 const AddPost =()=>{
@@ -21,6 +22,8 @@ const AddPost =()=>{
         content:'',
         categoryId:''
     })
+
+    const [image,setImage]=useState(null);
 
     const config = {
         placeholder:"Start Typing.."
@@ -54,10 +57,8 @@ const AddPost =()=>{
 
     //create post
     const createPost=(event)=>{
-
         event.preventDefault();
         // console.log(post);
-
         if(post.title.trim()===''){
             alert("post is required")
             return;
@@ -76,17 +77,35 @@ const AddPost =()=>{
         //submit the form on server
         post['userId']=user.id
         doCreatePost(post).then(data=>{
-            alert("post created")
-            console.log(post) 
+
+
+            uploadPostImage(image,data.postId).then(data=>{
+                toast.success("Image uploaded")
+            })
+            toast.success("Post created");
+        setPost({
+                title:'',
+                content:'',
+                categoryId: ''
+            })
+    
         }).catch((error)=>{
-            alert("error")
-            console.log(error)
+
+            toast.error("Error in uploading image")
+            console.log(error);
         })
+
+   
+
 
 
     }
 
 
+    const handleFileChange = (event)=>{
+        console.log(event.target.files[0])
+        setImage(event.target.files[0]);
+    }
 
 
     return (
@@ -125,6 +144,12 @@ const AddPost =()=>{
                 />
                 </div>
 
+                {/* file field */}
+
+                <div className="mt-3">
+                <Label for="image">Select Post banner</Label>
+                    <Input id="image" type="file" onChange={handleFileChange}   multiple/>
+                </div>
 
                 <div className="mx-3 mt-2">
 
@@ -150,6 +175,9 @@ const AddPost =()=>{
 
                     </Input>
                 </div>
+
+
+
 
                 <Container className="text-center mx-3 mt-2">
                     <Button type="submit" className="rounded-0" color="primary">Create a Post</Button>
