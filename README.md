@@ -6,6 +6,7 @@ This blog application is a reactjs web-based  project that allows individuals  t
 ## Screenshots
 
 ![Screenshot 2023-05-18 at 6 21 34 PM](https://github.com/ismaeli34/Blog_react_application/assets/17925504/c5a46245-ccd4-4368-b589-9cc3c64b1f36)
+![Screenshot 2023-05-18 at 6 32 28 PM](https://github.com/ismaeli34/Blog_react_application/assets/17925504/62b2ac8e-a86d-4c3e-9d9a-ff6076685a5f)
 ![Screenshot 2023-05-18 at 6 21 45 PM](https://github.com/ismaeli34/Blog_react_application/assets/17925504/15724b7f-a70d-40fd-a84f-813c18c99d0c)
 ![Screenshot 2023-05-18 at 6 21 54 PM](https://github.com/ismaeli34/Blog_react_application/assets/17925504/fe399ee3-557b-40cd-a8a4-1003b2115a37)
 
