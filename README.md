@@ -30,8 +30,7 @@ You may also see any lint errors in the console.
 ## Dashboard Screen
   
 
-## Frontend and Backend Communication
-![process](https://user-images.githubusercontent.com/17925504/232762141-c72f8b9b-a8cb-47fa-8b41-a6743c8fcd60.png)
+
 ## Backend 
 ![frontend](https://user-images.githubusercontent.com/17925504/232762240-1d6eb99f-34b1-4bf2-a766-a4b9829a1070.png)
 ## Frontend
