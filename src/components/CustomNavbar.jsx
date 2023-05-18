@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { NavLink as ReactLink, useNavigate } from 'react-router-dom';
  
 import {
@@ -16,11 +17,13 @@ import {
     NavbarText, 
   } from 'reactstrap';
 import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
+import userContext from '../context/userContext';
 
 
 
 const CustomNavbar = (args) => {
 
+  const userContextData = useContext(userContext);
   let navigate =useNavigate()
 
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +32,7 @@ const CustomNavbar = (args) => {
   const[login,setLogin]= useState(false)
   const [user,setUser]=useState(undefined)
 
-  useEffect(()=>{
+  useEffect(()=>{ 
     setLogin(isLoggedIn())
     setUser(getCurrentUserDetail())
 
@@ -38,7 +41,10 @@ const CustomNavbar = (args) => {
 
   const logout=()=>{
     doLogout(()=>{
-
+      userContextData.setUser({
+        data:null,
+        login:false
+      })
       //logged out
 
       setLogin(false)
@@ -49,7 +55,7 @@ const CustomNavbar = (args) => {
   return (
     <div >
      <div>
-      <Navbar className='px-5' color="dark" dark expand="md" fixed="">
+      <Navbar className='px-5' color="success" dark expand="md" fixed="">
         <NavbarBrand tag={ReactLink} to="/">MyBlogs</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -62,25 +68,8 @@ const CustomNavbar = (args) => {
               <NavLink tag={ReactLink} to="/about">About</NavLink>
             </NavItem>
 
-            <NavItem>
-              <NavLink tag={ReactLink} to="/services">Services</NavLink>
-            </NavItem>
-
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                More
-              </DropdownToggle>
-              <DropdownMenu end>
-                <DropdownItem tag={ReactLink} to="/contact-us">Contact us</DropdownItem>
-                <DropdownItem>Facebook</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Youtube</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Instagram</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>LinkedIn</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+        
+     
           </Nav>
 
           <Nav navbar>
@@ -95,7 +84,7 @@ const CustomNavbar = (args) => {
 
 
           <NavItem>
-              <NavLink tag={ReactLink} to="/user/profile-info"  >
+              <NavLink tag={ReactLink} to={`/user/profile-info/${user.id}`}  >
                 Profile Info
               </NavLink>
             </NavItem>

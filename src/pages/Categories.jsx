@@ -10,13 +10,14 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Post from '../components/Post';
 import { deletePostService } from '../services/post-service';
+
 function Categories() {
 
   const [posts,setPosts] = useState([])
 
    const {categoryId}= useParams();
 
-   useEffect (()=>{
+   useEffect (()=>{ 
     console.log(categoryId);
     loadPostCategoryWise(categoryId).then(data=>{
         setPosts([...data])
@@ -28,10 +29,7 @@ function Categories() {
 
    },[categoryId])
 
-
-
     //function to delete post
-
     function deletePost(post){
 
         //going to delete post
@@ -48,11 +46,6 @@ function Categories() {
 
 
     }
-
-
-
-
-
   return (
     <Base>
  

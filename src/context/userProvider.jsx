@@ -1,25 +1,28 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { getCurrentUserDetail, isLoggedIn } from '../auth'
 import userContext from './userContext'
 
 function UserProvider({children}) {
 
 
     const [user,setUser]=useState({
-        name:'Ronney'
+        data:{},
+        login:false
     })
 
     useEffect(()=>{
 
         setUser({
-            name:"Ronney Ismael"
+            data: getCurrentUserDetail(),
+            login:isLoggedIn()
         })
     },[])
 
   return (
 
-    <userContext.Provider  value={user}>
+    <userContext.Provider  value={{user,setUser}}>
         {children} 
     </userContext.Provider>
 
