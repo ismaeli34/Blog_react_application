@@ -1,4 +1,4 @@
-# BlogMaster Web Application - REACT JS
+# BlogMaster Web Application - REACT JS | SPRINGBOOT
 
 This blog application is a reactjs web-based  project that allows individuals  to create, publish, and manage their own blog or website. It provides a user-friendly interface for writing and organizing blog posts, as well as tools for customization, formatting, and publishing content online.
 
